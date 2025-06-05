@@ -1,0 +1,1 @@
+web: gunicorn PROYECTO_TRANSPORTE_ESCOLAR.wsgi
