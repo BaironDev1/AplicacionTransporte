@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Editar Ruta Diaria{% endblock %}</title>
+    {% load static %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="bg-gradient-to-b from-[#0A192F] to-[#172A45] flex items-center justify-center min-h-screen text-gray-200 p-6">
+
+{% block content %}
+<div class="w-full max-w-lg text-center space-y-6 bg-[#1E2A47]/95 p-6 rounded-lg shadow-lg">
+    <h1 class="text-3xl font-semibold">Editar Ruta Diaria</h1>
+
+    <form method="post" class="space-y-4 text-left">
+        {% csrf_token %}
+        <div class="space-y-4">
+            {% for field in formulario %}
+            <div>
+                <label class="block text-gray-300 text-sm font-medium" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+            </div>
+            {% endfor %}
+        </div>
+        <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Guardar cambios</button>
+    </form>
+
+    <a href="{% url 'lista_rutas' %}" class="block bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mt-3">Volver a la lista de rutas</a>
+</div>
+{% endblock %}
+
+<style>
+    input[type="text"], input[type="date"], input[type="time"], select {
+        background-color: #374151; /* bg-gray-700 */
+        color: white;
+        border: 1px solid #6B7280; /* border-gray-500 */
+        border-radius: 0.375rem; /* rounded */
+        padding: 0.5rem 0.75rem; /* px-3 py-2 */
+        width: 100%;
+        outline: none;
+    }
+    
+
+</style>
+
+</body>
+</html>
+

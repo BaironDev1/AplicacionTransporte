@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Eliminar Escuela{% endblock %}</title>
+    {% load static %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="bg-gradient-to-b from-[#0A192F] to-[#172A45] flex items-center justify-center min-h-screen text-gray-200 p-6">
+
+{% block content %}
+<div class="w-full max-w-2xl text-center space-y-6">
+    <h1 class="text-3xl font-semibold">¿Estás seguro de que deseas eliminar esta escuela?</h1>
+    <p class="text-lg"> Descripcion: {{ escuela.nombre_escuela }} - {{ escuela.ubicacion_escuela }}</p>
+    
+    <!-- Formulario de confirmación -->
+    <form method="post" class="space-y-3">
+        {% csrf_token %}
+        <button type="submit" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Eliminar</button>
+    </form>
+
+    <!-- Botón de cancelar -->
+    <a href="{% url 'lista_escuelas' %}" class="block bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded mt-3">Cancelar</a>
+</div>
+{% endblock %}
+
+</body>
+</html>
+

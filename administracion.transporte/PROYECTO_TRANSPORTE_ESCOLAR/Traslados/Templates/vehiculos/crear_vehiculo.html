@@ -1,0 +1,13 @@
+{% block title %}Crear Bus{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1>Crear Bus</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ formulario.as_p }}
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+    <a href="{% url 'lista_vehiculos' %}" class="btn btn-secondary mt-3">Volver a la lista de buses</a>
+</div>
+{% endblock %}

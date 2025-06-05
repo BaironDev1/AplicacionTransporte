@@ -1,0 +1,15 @@
+
+{% block title %}Editar Mensualidad{% endblock %}
+
+{% block content %}
+<div >
+    <h1>Editar Mensualidad</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-warning">Actualizar</button>
+    </form>
+    <a href="{% url 'lista_mensualidades' %}" class="btn btn-secondary">Cancelar</a>
+
+</div>
+{% endblock %}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Página Principal{% endblock %}</title>
+    {% load static %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .animate-fade-in {
+            animation: fade-in 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-b from-[#0A192F] to-[#172A45] flex flex-col min-h-screen text-gray-200">
+
+    <main class="flex-grow flex items-center justify-center">
+        {% block content %}
+        <div class="flex flex-col items-center w-full max-w-md bg-[#1E2A47]/90 shadow-2xl px-8 py-6 border border-blue-400/30 rounded-2xl animate-fade-in space-y-6">
+            <h1 class="text-3xl font-bold text-center text-white">Sistema De Transporte Escolar</h1>
+
+            <ul class="w-full space-y-2">
+                <li>    
+                    <a href="{% url 'lista_conductores' %}" class="flex items-center gap-3 py-3 px-4 rounded-lg bg-[#243b55]/70 hover:bg-blue-600 transition duration-200 hover:scale-[1.02] text-white shadow hover:shadow-lg">
+                        <i class="fa-solid fa-id-card text-lg"></i> Conductores
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'lista_vehiculos' %}" class="flex items-center gap-3 py-3 px-4 rounded-lg bg-[#243b55]/70 hover:bg-blue-600 transition duration-200 hover:scale-[1.02] text-white shadow hover:shadow-lg">
+                        <i class="fa-solid fa-bus text-lg"></i> Buses
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'lista_escuelas' %}" class="flex items-center gap-3 py-3 px-4 rounded-lg bg-[#243b55]/70 hover:bg-blue-600 transition duration-200 hover:scale-[1.02] text-white shadow hover:shadow-lg">
+                        <i class="fa-solid fa-school text-lg"></i> Colegios
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'lista_usuarios' %}" class="flex items-center gap-3 py-3 px-4 rounded-lg bg-[#243b55]/70 hover:bg-blue-600 transition duration-200 hover:scale-[1.02] text-white shadow hover:shadow-lg">
+                        <i class="fa-solid fa-users text-lg"></i> Pasajeros
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'lista_rutas' %}" class="flex items-center gap-3 py-3 px-4 rounded-lg bg-[#243b55]/70 hover:bg-blue-600 transition duration-200 hover:scale-[1.02] text-white shadow hover:shadow-lg">
+                        <i class="fa-solid fa-route text-lg"></i> Traslados Diarios
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'lista_mensualidades' %}" class="flex items-center gap-3 py-3 px-4 rounded-lg bg-[#243b55]/70 hover:bg-blue-600 transition duration-200 hover:scale-[1.02] text-white shadow hover:shadow-lg">
+                        <i class="fa-solid fa-money-bill-wave text-lg"></i> Mensualidades
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'lista_personal' %}" class="flex items-center gap-3 py-3 px-4 rounded-lg bg-[#243b55]/70 hover:bg-blue-600 transition duration-200 hover:scale-[1.02] text-white shadow hover:shadow-lg">
+                        <i class="fa-solid fa-user-tie text-lg"></i> Personal
+                    </a>
+                </li>
+            </ul>
+        </div>
+        {% endblock %}
+    </main>
+
+    <footer class="bg-[#1E2A47]/80 text-sm text-gray-300 py-4 px-6 text-center border-t border-blue-400/20">
+        <div class="flex flex-col sm:flex-row justify-between items-center max-w-4xl mx-auto space-y-2 sm:space-y-0">
+            <span class="flex items-center gap-2">
+                <i class="fa-solid fa-bus text-blue-400"></i> Sistema De Transporte Escolar
+            </span>
+            <span class="flex items-center gap-2">
+                <i class="fa-solid fa-code text-green-400"></i> Desarrollado Por B/A DEV
+            </span>
+            <span class="flex items-center gap-2">
+                <i class="fa-solid fa-envelope text-yellow-400"></i> Baironampuero2468@gmail.com
+            </span>
+        </div>
+    </footer>
+
+</body>
+</html>
+
+
+
+
+
+
+

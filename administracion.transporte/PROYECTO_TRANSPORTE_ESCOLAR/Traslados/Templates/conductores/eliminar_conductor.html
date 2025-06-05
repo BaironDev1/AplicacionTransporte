@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Eliminar Chofer{% endblock %}</title>
+    {% load static %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="bg-gradient-to-b from-[#0A192F] to-[#172A45] flex items-center justify-center min-h-screen text-gray-200 p-6">
+
+{% block content %}
+<div class="w-full max-w-lg text-center space-y-6">
+    <h1 class="text-3xl font-semibold">¿Estás seguro de que deseas eliminar este chofer?</h1>
+    <p class="text-lg text-gray-300">{{ conductor.nombre_conductor }} {{ conductor.apellido_conductor }} - {{ conductor.rut_conductor }}</p>
+    <form method="post" class="bg-[#1E2A47]/90 p-6 rounded-lg shadow-md text-left space-y-4">
+        {% csrf_token %}
+        <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Eliminar</button>
+    </form>
+    <a href="{% url 'lista_conductores' %}" class="block bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">Cancelar</a>
+</div>
+{% endblock %}
+
+</body>
+</html>

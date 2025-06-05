@@ -1,0 +1,14 @@
+{% block title %}Editar Personal{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1>Editar Personal</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Renderiza el formulario como párrafos -->
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+    <a href="{% url 'lista_personal' %}" class="btn btn-secondary">Cancelar</a>
+
+</div>
+{% endblock %}

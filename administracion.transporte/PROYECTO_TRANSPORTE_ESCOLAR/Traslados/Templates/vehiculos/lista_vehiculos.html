@@ -1,0 +1,35 @@
+{% block content %}
+<h1>Lista de Buses</h1>
+
+<!-- Formulario de búsqueda -->
+<form method="GET" action="">
+    <input type="text" name="q" class="form-control" placeholder="Buscar bus por placa, marca o modelo" value="{{ request.GET.q }}">
+    <button type="submit" class="btn btn-primary mt-2">Buscar</button>
+</form>
+
+<!-- Botón para agregar bus -->
+<a href="{% url 'crear_vehiculo' %}" class="btn btn-success mt-3">Agregar Bus</a>
+
+<!-- Lista de buses -->
+<div class="mt-3">
+    {% for vehiculo in vehiculos %}
+        <div class="border p-2 mb-2">
+            <strong>Patente:</strong> {{ vehiculo.placa_vehiculo }}<br>
+            <strong>Chofer:</strong> {{ vehiculo.conductor.nombre_conductor }} {{ vehiculo.conductor.apellido_conductor }}<br>
+            <strong>Marca:</strong> {{ vehiculo.marca_vehiculo }}<br>
+            <strong>Modelo:</strong> {{ vehiculo.modelo_vehiculo }}<br>
+            <strong>Año:</strong> {{ vehiculo.año_vehiculo }}<br>
+            <strong>Capacidad:</strong> {{ vehiculo.capacidad_vehiculo }}<br>
+            <div class="text-center mt-2">
+                <a href="{% url 'editar_vehiculo' vehiculo.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'eliminar_vehiculo' vehiculo.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+            </div>
+        </div>
+    {% empty %}
+        <div class="text-center">No hay buses registrados.</div>
+    {% endfor %}
+</div>
+
+<!-- Botón para volver al home -->
+<a href="{% url 'home' %}" class="btn btn-secondary">Volver al Home</a>
+{% endblock %}

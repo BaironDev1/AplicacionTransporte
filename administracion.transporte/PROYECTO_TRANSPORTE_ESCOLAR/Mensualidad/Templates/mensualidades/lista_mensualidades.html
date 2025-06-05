@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Lista de Mensualidades{% endblock %}</title>
+    {% load static %}
+    {% load tz %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="bg-gradient-to-b from-[#0A192F] to-[#172A45] text-gray-200 min-h-screen flex flex-col">
+
+<!-- Contenedor principal que empuja el footer abajo -->
+<main class="flex-grow flex items-center justify-center px-4 py-8">
+    {% block content %}
+    <div class="w-full max-w-2xl text-center space-y-6">
+
+        <h1 class="text-3xl font-semibold">Lista de Mensualidades</h1>
+
+        <a href="{% url 'crear_mensualidad' %}" class="block bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+            Agregar Mensualidad
+        </a>
+
+        <div class="space-y-4">
+            {% for mensualidad in mensualidades %}
+                <div class="bg-[#1E2A47]/90 p-4 rounded-lg shadow-md text-left">
+                    <p><strong>Pasajero:</strong> {{ mensualidad.pasajero }}</p>
+                    <p><strong>Personal:</strong> {{ mensualidad.personal }}</p>
+                    <p><strong>Año:</strong> {{ mensualidad.año_mensualidad }}</p>
+                    <p><strong>Mes:</strong> {{ mensualidad.mes_mensualidad }}</p>
+                    <p><strong>Monto:</strong> {{ mensualidad.monto_mensualidad }}</p>
+                    <p><strong>Pagado:</strong> {{ mensualidad.pagado }}</p>
+                    <div class="flex justify-center space-x-2 mt-3">
+                        <a href="{% url 'editar_mensualidad' mensualidad.pk %}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-3 rounded">Editar</a>
+                        <a href="{% url 'eliminar_mensualidad' mensualidad.pk %}" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-3 rounded">Eliminar</a>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="text-center text-gray-300">No hay mensualidades registradas.</div>
+            {% endfor %}
+        </div>
+
+        <a href="{% url 'home' %}" class="block bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">Volver al Home</a>
+    </div>
+    {% endblock %}
+</main>
+
+<!-- Footer fijo en la parte inferior -->
+<footer class="w-full text-center text-gray-400 text-sm py-4 border-t border-gray-700">
+    &copy; {% now "Y" %} Sistema de Gestión de Transporte Escolar. Todos los derechos reservados.
+</footer>
+
+</body>
+</html>

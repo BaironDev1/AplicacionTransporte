@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Lista de Choferes{% endblock %}</title>
+    {% load static %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="bg-gradient-to-b from-[#0A192F] to-[#172A45] flex items-center justify-center min-h-screen text-gray-200 p-6">
+
+{% block content %}
+<div class="w-full max-w-2xl text-center space-y-6">
+    <h1 class="text-3xl font-semibold">Lista de Choferes</h1>
+
+    <!-- Formulario de búsqueda -->
+    <form method="GET" action="" class="flex flex-col space-y-3">
+        <input type="text" name="q" class="w-full bg-gray-700 border border-gray-600 text-white py-2 px-4 rounded" placeholder="Buscar chofer por RUT, nombre o apellido" value="{{ request.GET.q }}">
+        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Buscar</button>
+    </form>
+
+    <!-- Botón para agregar chofer -->
+    <a href="{% url 'crear_conductor' %}" class="block bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Agregar Chofer</a>
+
+    <!-- Lista de choferes -->
+    <div class="mt-3 space-y-4">
+        {% for conductor in conductores %}
+            <div class="bg-[#1E2A47]/90 p-4 rounded-lg shadow-md text-left">
+                <p><strong>RUT:</strong> {{ conductor.rut_conductor }}</p>
+                <p><strong>Nombre:</strong> {{ conductor.nombre_conductor }}</p>
+                <p><strong>Apellido:</strong> {{ conductor.apellido_conductor }}</p>
+                <p><strong>Teléfono:</strong> {{ conductor.telefono_conductor }}</p>
+                <p><strong>Género:</strong> {{ conductor.genero_conductor }}</p>
+                <div class="flex justify-center space-x-2 mt-3">
+                    <a href="{% url 'editar_conductor' conductor.pk %}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-3 rounded">Editar</a>
+                    <a href="{% url 'eliminar_conductor' conductor.pk %}" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-3 rounded">Eliminar</a>
+                </div>
+            </div>
+        {% empty %}
+            <div class="text-center text-gray-300">No hay choferes registrados.</div>
+        {% endfor %}
+    </div>
+
+    <!-- Botón para volver al home -->
+    <a href="{% url 'home' %}" class="block bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">Volver al Home</a>
+</div>
+{% endblock %}
+
+</body>
+</html>

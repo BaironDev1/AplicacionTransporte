@@ -1,0 +1,13 @@
+{% block title %}Eliminar Ruta Diaria{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1>¿Estás seguro de que deseas eliminar esta ruta?</h1>
+    <p>Ruta para el usuario {{ ruta.usuario.nombre_usuario }} - Vehículo {{ ruta.vehiculo.placa_vehiculo }}</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+    </form>
+    <a href="{% url 'lista_rutas' %}" class="btn btn-secondary mt-3">Cancelar</a>
+</div>
+{% endblock %}

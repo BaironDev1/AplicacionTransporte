@@ -1,0 +1,15 @@
+
+{% block title %}Eliminar Mensualidad{% endblock %}
+
+{% block content %}
+<div >
+    <h1>Eliminar Mensualidad</h1>
+    <p>¿Estás seguro de que deseas eliminar la mensualidad de {{ mensualidad.pasajero.nombre_pasajero }} para el mes de {{ mensualidad.mes_mensualidad }} {{ mensualidad.year_mensualidad }}?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+    </form>
+    <a href="{% url 'lista_mensualidades' %}" class="btn btn-secondary">Cancelar</a>
+
+</div>
+{% endblock %}

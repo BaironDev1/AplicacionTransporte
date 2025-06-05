@@ -1,0 +1,13 @@
+{% block title %}Editar Usuario{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1>Editar Usuario</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ formulario.as_p }}
+        <button type="submit" class="btn btn-warning">Guardar cambios</button>
+    </form>
+    <a href="{% url 'lista_usuarios' %}" class="btn btn-secondary mt-3">Volver a la lista de usuarios</a>
+</div>
+{% endblock %}

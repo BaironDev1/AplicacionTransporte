@@ -1,0 +1,35 @@
+{% block content %}
+<h1>Lista de Usuarios</h1>
+
+<!-- Formulario de búsqueda -->
+<form method="GET" action="">
+    <input type="text" name="q" class="form-control" placeholder="Buscar usuario" value="{{ request.GET.q }}">
+    <button type="submit" class="btn btn-primary mt-2">Buscar</button>
+</form>
+
+<!-- Botón para agregar usuario -->
+<a href="{% url 'crear_usuario' %}" class="btn btn-success mt-3">Agregar Usuario</a>
+
+<!-- Lista de usuarios -->
+<div class="mt-3">
+    {% for usuario in usuarios %}
+        <div class="border p-2 mb-2">
+            <strong>RUT:</strong> {{ usuario.rut_usuario }}<br>
+            <strong>Nombre:</strong> {{ usuario.nombre_usuario }}<br>
+            <strong>Apellido:</strong> {{ usuario.apellido_usuario }}<br>
+            <strong>Colegio:</strong> {{ usuario.escuela.nombre_escuela }}<br>
+            <strong>Apoderado:</strong> {{ usuario.representante_usuario }}<br>
+            <strong>Dirección:</strong> {{ usuario.direccion_usuario }}<br>
+            <div class="text-center mt-2">
+                <a href="{% url 'editar_usuario' usuario.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'eliminar_usuario' usuario.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+            </div>
+        </div>
+    {% empty %}
+        <div class="text-center">No hay usuarios registrados.</div>
+    {% endfor %}
+</div>
+
+<!-- Botón para volver al home -->
+<a href="{% url 'home' %}" class="btn btn-secondary">Volver al Home</a>
+{% endblock %}

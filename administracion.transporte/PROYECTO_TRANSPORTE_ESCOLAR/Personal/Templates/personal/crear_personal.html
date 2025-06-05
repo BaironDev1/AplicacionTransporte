@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Agregar Personal{% endblock %}</title>
+    {% load static %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="bg-gradient-to-b from-[#0A192F] to-[#172A45] flex items-center justify-center min-h-screen text-gray-200">
+
+{% block content %}
+<div class="text-center space-y-6 w-full max-w-md">
+    <h1 class="text-3xl font-semibold">Agregar Personal</h1>
+    
+    <div class="bg-[#1E2A47]/90 p-6 rounded-lg shadow-md">
+        <form method="post" class="space-y-4">
+            {% csrf_token %}
+            <div class="space-y-4 text-left">
+                {% for field in form %}
+                    <div class="flex flex-col">
+                        <label class="text-gray-300 font-medium">{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+            </div>
+            <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Guardar</button>
+        </form>
+    </div>
+    
+    <div>
+        <a href="{% url 'lista_personal' %}" class="bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">Cancelar</a>
+    </div>
+</div>
+{% endblock %}
+
+<style>
+    /* Aplicar estilos directamente a los inputs del formulario */
+    input {
+        width: 100%;
+        background-color: #374151; /* Fondo oscuro */
+        border: 1px solid #4B5563; /* Borde gris */
+        color: white; /* Texto blanco */
+        padding: 8px 12px;
+        border-radius: 5px;
+    }
+</style>
+
+</body>
+</html>

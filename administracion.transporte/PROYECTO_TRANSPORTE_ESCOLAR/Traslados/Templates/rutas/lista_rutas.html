@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Lista de Rutas Diarias{% endblock %}</title>
+    {% load static %}
+    {% load tz %}
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body class="bg-gradient-to-b from-[#0A192F] to-[#172A45] text-gray-200 min-h-screen flex flex-col">
+
+<!-- Contenido principal centrado -->
+<main class="flex-grow flex items-center justify-center px-4 py-8">
+    {% block content %}
+    <div class="w-full max-w-2xl text-center space-y-6">
+
+        <h1 class="text-3xl font-semibold">Lista de Rutas Diarias</h1>
+
+        <!-- Formulario de búsqueda -->
+        <form method="GET" action="" class="flex flex-col space-y-3">
+            <input type="text" name="q" class="w-full bg-gray-700 border border-gray-600 text-white py-2 px-4 rounded" placeholder="Buscar ruta" value="{{ request.GET.q }}">
+            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Buscar</button>
+        </form>
+
+        <!-- Botón para agregar ruta -->
+        <a href="{% url 'crear_ruta' %}" class="block bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Agregar Ruta</a>
+
+        <!-- Lista de rutas -->
+        <div class="mt-3 space-y-4">
+            {% for ruta in rutas %}
+                <div class="bg-[#1E2A47]/90 p-4 rounded-lg shadow-md text-left">
+                    <p><strong>Usuario:</strong> {{ ruta.usuario.nombre_usuario }}</p>
+                    <p><strong>Vehículo:</strong> {{ ruta.vehiculo.placa_vehiculo }}</p>
+                    <p><strong>Fecha:</strong> {{ ruta.fecha_viaje }}</p>
+                    <p><strong>Hora Inicio:</strong> {{ ruta.hora_inicio }}</p>
+                    <p><strong>Hora Fin:</strong> {{ ruta.hora_fin }}</p>
+                    <div class="flex justify-center space-x-2 mt-3">
+                        <a href="{% url 'editar_ruta' ruta.pk %}" class="bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-2 px-3 rounded">Editar</a>
+                        <a href="{% url 'eliminar_ruta' ruta.pk %}" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-3 rounded">Eliminar</a>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="text-center text-gray-300">No hay rutas registradas.</div>
+            {% endfor %}
+        </div>
+
+        <!-- Botón para volver al home -->
+        <a href="{% url 'home' %}" class="block bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded">Volver al Home</a>
+    </div>
+    {% endblock %}
+</main>
+
+<!-- Footer fijo al fondo -->
+<footer class="w-full text-center text-gray-400 text-sm py-4 border-t border-gray-700">
+    &copy; {% now "Y" %} Sistema de Gestión de Transporte Escolar. Todos los derechos reservados.
+</footer>
+
+</body>
+</html>
+
